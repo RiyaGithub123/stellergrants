@@ -1,24 +1,26 @@
 # ⚡ StellarGrants — Decentralized Creator Grants & Milestone Escrow Protocol
 
-[![Stellar Testnet](https://img.shields.io/badge/Network-Stellar_Testnet-00e5ff?style=for-the-badge&logo=stellar)](https://stellar.expert/explorer/testnet)
-[![Soroban v22](https://img.shields.io/badge/Smart_Contracts-Soroban_v22-7c4dff?style=for-the-badge)](https://soroban.stellar.org)
+[![Live dApp](https://img.shields.io/badge/Live_dApp-tubular--starship--2502ee.netlify.app-00e5ff?style=for-the-badge&logo=netlify)](https://tubular-starship-2502ee.netlify.app/)
+[![Stellar Testnet](https://img.shields.io/badge/Network-Stellar_Testnet-7c4dff?style=for-the-badge&logo=stellar)](https://stellar.expert/explorer/testnet)
+[![Soroban v22](https://img.shields.io/badge/Smart_Contracts-Soroban_v22-10b981?style=for-the-badge)](https://soroban.stellar.org)
 [![Live Demo Video](https://img.shields.io/badge/YouTube-Live_Demo_Video-ff0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=64qJXUGWB9c)
-[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-00e676?style=for-the-badge&logo=githubactions)](.github/workflows/ci.yml)
-[![Level 1-2-3 Qualified](https://img.shields.io/badge/Challenge-Levels_1_2_3_Complete-ffd600?style=for-the-badge)](https://developers.stellar.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-ffd600?style=for-the-badge)](LICENSE)
 
-> **StellarGrants** is a decentralized crowdfunding, ecosystem grant, and milestone-gated escrow protocol deployed on **Stellar Testnet** using **Soroban WASM v22**. Built for the **Stellar Developer Challenge (Levels 1, 2 & 3)**, it features trustless escrow vaults, multi-stage milestone releases, backer refund guarantees, multi-wallet authentication, and real-time on-chain event streaming wrapped in a cosmic glassmorphism user interface.
-
----
-
-## 🎥 Video Demonstration
-* **YouTube Walkthrough & Live Demo:** [https://www.youtube.com/watch?v=64qJXUGWB9c](https://www.youtube.com/watch?v=64qJXUGWB9c)
+> **StellarGrants** is a milestone-gated crowdfunding and ecosystem grant protocol deployed on **Stellar Testnet** using **Soroban WASM smart contracts**. It protects backers with trustless on-chain escrow vaults, empowers creators through incremental milestone funding, and provides real-time event streaming in a cosmic glassmorphism interface.
 
 ---
 
-## 📋 Evaluator & Mentor Quick Reference
+## 🔗 Live Application & Video Demonstration
+* 🌐 **Live Deployed dApp:** [https://tubular-starship-2502ee.netlify.app/](https://tubular-starship-2502ee.netlify.app/)
+* 🎥 **YouTube Walkthrough & Live Demo:** [https://www.youtube.com/watch?v=64qJXUGWB9c](https://www.youtube.com/watch?v=64qJXUGWB9c)
+
+---
+
+## 📋 Smart Contract & Deployment Reference
 
 | Parameter | On-Chain Value / Link |
 | :--- | :--- |
+| **Live Deployed dApp URL** | [https://tubular-starship-2502ee.netlify.app/](https://tubular-starship-2502ee.netlify.app/) |
 | **Network** | **Stellar Testnet (Protocol 22 / Soroban v22)** |
 | **Contract Name** | `GrantEscrowContract` |
 | **Primary Deployed Contract ID** | [`CBHPULMSCLA3F3LEPKAAWVGEQNYUMLX3KFNPUFGU2SBOBFIMGFC5KIAS`](https://stellar.expert/explorer/testnet/contract/CBHPULMSCLA3F3LEPKAAWVGEQNYUMLX3KFNPUFGU2SBOBFIMGFC5KIAS) |
@@ -35,89 +37,74 @@
 
 ---
 
-## 🏛️ Architecture Overview
+## 💡 Why StellarGrants? (The Problem & Solution)
+
+### The Problem in Web3 Crowdfunding
+Traditional crowdfunding platforms (Kickstarter, GoFundMe, and standard crypto token raises) disburse 100% of collected funds to creators upfront. If a creator abandons the project or fails to deliver, backers have zero recourse and lose their entire contribution.
+
+### The StellarGrants Solution
+StellarGrants replaces blind trust with **cryptographic escrow guarantees**:
+* **Milestone Tranche Unlocks:** Funds are locked in the Soroban smart contract and released only in proportional stages ($1/N$) as creators prove milestone delivery.
+* **Automated Backer Refunds:** If a campaign stalls or is cancelled, backers can trigger an automated on-chain refund to recover their unreleased funds.
+* **Near-Zero Fees & Instant Settlement:** Leveraging Stellar’s 3–5 second finality and sub-cent fees (100 stroops = 0.00001 XLM), micro-grants and community backing are accessible to anyone globally.
+
+---
+
+## 🏛️ System Architecture
 
 ```text
-[ Creator / Backer ] ──> [ Freighter / Demo Wallet ]
+[ Creator / Backer ] ──> [ Freighter / Testnet Wallet ]
          │
          ▼
 [ React + Vite Cosmic UI ] 
          │
-         ├───> [ Stellar Horizon Testnet ]  (Native XLM Payments & Balance Queries)
+         ├───> [ Stellar Horizon Testnet ]  (Native XLM Payments & Account Balances)
          ├───> [ Stellar Friendbot Faucet ] (1-Click Instant +10,000 XLM Funding)
          └───> [ Soroban RPC Node ]         (Smart Contract WASM Execution & Events)
                      │
                      ▼
        [ GrantEscrowContract Vault ]
-         ├── create_campaign (Persistent Storage + Milestone Setup)
-         ├── pledge_funds    (Backer Contribution Registry)
+         ├── create_campaign   (Persistent Storage + Milestone Setup)
+         ├── pledge_funds      (Backer Contribution Registry)
          ├── release_milestone (Milestone-gated Escrow Release)
-         └── refund_backer   (Automated Trustless Backer Refunds)
+         └── refund_backer     (Automated Trustless Backer Refunds)
 ```
 
 ---
 
-## 🎯 Challenge Requirements Matrix
+## ✨ Key Features
 
-| Level | Focus Area | Requirement | StellarGrants Implementation | Status |
-| :--- | :--- | :--- | :--- | :---: |
-| **Level 1** | **White Belt** | Wallet Connect & Disconnect | Freighter integration with `@stellar/freighter-api` v3 + instant testnet key fallback | ✅ Complete |
-| **Level 1** | **White Belt** | Display Balance & Funding | Real-time XLM balance + 1-Click Friendbot Faucet (+10,000 XLM) | ✅ Complete |
-| **Level 1** | **White Belt** | XLM Payments on Testnet | Direct payment module with address validation, amount formatting, memo, and explorer link | ✅ Complete |
-| **Level 1** | **White Belt** | Transaction Feedback | Instant confirmation banner with ledger number, tx hash, and Stellar.Expert link | ✅ Complete |
-| **Level 2** | **Green Belt** | Multi-Wallet Support | Freighter and Instant Demo Testnet keypair in custom modal | ✅ Complete |
-| **Level 2** | **Green Belt** | 3+ Error Handling Types | User rejected, Insufficient balance, Invalid address, Simulation revert | ✅ Complete |
-| **Level 2** | **Green Belt** | Smart Contract on Testnet | Soroban Rust contract with persistent state storage, milestone calculations, and refund logic | ✅ Complete |
-| **Level 2** | **Green Belt** | Frontend Contract Calls | Frontend invokes `create_campaign`, `pledge_funds`, `release_milestone`, `refund_backer`, `get_campaign` | ✅ Complete |
-| **Level 2** | **Green Belt** | Real-Time Events | Subscribes to Soroban RPC `getEvents` for live contract activity feed | ✅ Complete |
-| **Level 3** | **Black Belt** | Advanced Smart Contracts | Structs, Enums, Maps, TTL management, Event emissions, and milestone release mechanics | ✅ Complete |
-| **Level 3** | **Black Belt** | Comprehensive Unit Tests | 4 passing unit tests in Rust (`cargo test`) verifying all contract methods | ✅ Complete |
-| **Level 3** | **Black Belt** | CI/CD Pipeline | Automated GitHub Actions workflow testing contracts and building frontend | ✅ Complete |
-| **Level 3** | **Black Belt** | Mobile Responsive UI | Cosmic glassmorphism design system with responsive layouts for mobile & desktop | ✅ Complete |
+1. **Milestone-Gated Escrow Smart Contracts (`GrantEscrowContract`)**
+   * Trustless Rust smart contract managing the entire campaign lifecycle (Active ➔ FullyFunded ➔ MilestoneCompleted ➔ Cancelled).
+   * Backer registry tracking individual contributions for verifiable refund rights.
+   * Automated TTL extension (30-day state persistence) ensuring persistent ledger safety.
 
----
+2. **Native XLM Fast Payments**
+   * Direct testnet transfer module supporting destination address validation, base fee calculation, custom memo attachments, and instant Stellar.Expert explorer links.
 
-## 📦 Project Structure
+3. **Multi-Wallet Support**
+   * Deep integration with **Freighter Wallet** (the official SDF browser extension) using `@stellar/freighter-api` v3.
+   * Instant Testnet Keypair mode with 1-click Friendbot faucet auto-funding (+10,000 XLM) for instant zero-install sandbox testing.
 
-```
-StelelrGrants/
-├── .github/
-│   └── workflows/
-│       └── ci.yml               # Automated CI/CD testing & build workflow
-├── contracts/
-│   └── grant_escrow/
-│       ├── Cargo.toml           # Soroban Rust SDK v22 dependencies
-│       └── src/
-│           ├── lib.rs           # GrantEscrowContract implementation
-│           └── test.rs          # 4 comprehensive Rust unit tests
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Header.jsx       # Navigation, network badge & wallet modal
-│   │   │   ├── WalletSection.jsx# Hero balance, QR code & protocol metrics
-│   │   │   ├── TransferSection.jsx # Level 1 XLM payments on testnet
-│   │   │   ├── CampaignDAOSection.jsx # Level 2/3 Soroban contract interaction
-│   │   │   ├── LiveEventsSection.jsx  # Real-time contract event stream
-│   │   │   └── TxModal.jsx      # Multi-wallet connection dialog
-│   │   ├── context/
-│   │   │   └── WalletContext.jsx# Global wallet state & signature delegate
-│   │   ├── services/
-│   │   │   └── stellar.js       # Horizon, Soroban RPC & contract utilities
-│   │   ├── App.jsx              # Main router & layout
-│   │   ├── index.css            # Cosmic glassmorphism design system
-│   │   └── main.jsx             # React entry point
-│   ├── index.html               # Typography & metadata
-│   ├── package.json             # Frontend dependencies & scripts
-│   └── vite.config.js           # Vite configuration with Node polyfills
-├── scripts/
-│   ├── deploy_live_testnet.js   # Automated SDK deployment script
-│   └── interact_live_testnet.js # On-chain read/write verification script
-└── README.md                    # Project documentation
-```
+4. **Real-Time On-Chain Event Streaming**
+   * Real-time polling via Soroban RPC `getEvents` capturing contract events (`camp_new`, `camp_pled`, `mile_rel`, `camp_ref`) with live ledger numbers and timestamps.
+
+5. **Cosmic Glassmorphism UI**
+   * Modern dark theme with radiant neon cyan, purple, and emerald accents, interactive milestone steppers, progress bars, QR code generator, and confetti celebratory animations.
 
 ---
 
-## 🚀 Quickstart Guide
+## 🛠️ How It Was Built (Tech Stack)
+
+* **Smart Contract:** Rust, `soroban-sdk = "22.0.11"`, `wasm32-unknown-unknown`
+* **Frontend:** React 18, Vite 6, Vanilla CSS (Cosmic Glassmorphism Design System)
+* **SDK & Protocol:** `@stellar/stellar-sdk = "16.2.0"`, `@stellar/freighter-api = "3.1.0"`
+* **Testing:** Rust unit test suite (`soroban-sdk::testutils`), 4 passing tests
+* **CI/CD:** Automated GitHub Actions pipeline (`.github/workflows/ci.yml`)
+
+---
+
+## 🚀 Getting Started
 
 ### 1. Prerequisites
 * **Node.js** (v18 or higher)
@@ -126,16 +113,18 @@ StelelrGrants/
 
 ---
 
-### 2. Run Frontend Locally
+### 2. Run Locally
 
 ```bash
-# Navigate to frontend directory
-cd frontend
+# Clone repository
+git clone https://github.com/RiyaGithub123/stellergrants.git
+cd stellergrants
 
-# Install dependencies
+# Navigate to frontend and install dependencies
+cd frontend
 npm install --legacy-peer-deps
 
-# Start local development server
+# Start development server
 npm run dev
 ```
 
@@ -143,14 +132,14 @@ Open [http://localhost:5174](http://localhost:5174) in your browser.
 
 ---
 
-### 3. Run Smart Contract Unit Tests
+### 3. Run Smart Contract Tests
 
 ```bash
 cd contracts/grant_escrow
 cargo test
 ```
 
-**Expected Test Output:**
+**Test Output:**
 ```
 running 4 tests
 test test::test_nonexistent_campaign_panic - should panic ... ok
@@ -158,7 +147,7 @@ test test::test_create_and_fetch_campaign ... ok
 test test::test_refund_and_stats ... ok
 test test::test_pledge_and_milestone_release ... ok
 
-test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+test result: ok. 4 passed; 0 failed; finished in 0.05s
 ```
 
 ---
@@ -172,39 +161,28 @@ cargo build --target wasm32-unknown-unknown --release
 
 ---
 
-## 🌐 How to Deploy Frontend to Vercel
+## 🌐 Deploy Frontend to Vercel
 
-1. Push this repository to GitHub (`https://github.com/RiyaGithub123/StelelrGrants.git`).
-2. Log into [vercel.com](https://vercel.com) and click **"Add New Project"**.
-3. Import your **`StelelrGrants`** repository.
-4. Under **Project Settings**:
-   * **Root Directory**: Click *Edit* and select **`frontend`**.
-   * **Framework Preset**: Select **Vite**.
-   * **Build Command**: `npm run build`
-   * **Output Directory**: `dist`
-5. Click **"Deploy"** — your live dApp will be deployed to a `*.vercel.app` URL in under 60 seconds!
+1. Push your repository to GitHub (`https://github.com/RiyaGithub123/stellergrants.git`).
+2. Log in to [vercel.com](https://vercel.com) and click **"Add New Project"**.
+3. Import your **`stellergrants`** repository.
+4. Set **Root Directory** to **`frontend`**.
+5. Framework Preset: **Vite**.
+6. Click **"Deploy"**.
 
 ---
 
-## 🧪 Testing Scenarios & Checklist
+## 📖 How to Use the DApp
 
-### Level 1 (White Belt) Verification
-1. **Wallet Connect**: Click "Connect Wallet" -> select Freighter or Instant Testnet Key.
-2. **Faucet Funding**: Click "+ Faucet (+10k XLM)" -> account balance increments.
-3. **Send Payment**: Navigate to "Send XLM", fill destination address, amount, and click "Send Payment on Testnet".
-4. **Tx Feedback**: View transaction hash and click "View on Stellar.Expert" to see on-chain confirmation.
-
-### Level 2 (Green Belt) Verification
-1. **Create Grant Campaign**: Go to "Grant Vaults", click "Create Grant Campaign", fill details and milestone count (1-5), and sign transaction.
-2. **Pledge XLM**: Click "Pledge XLM" on any campaign card, select amount (+10, +50, +100 XLM), and confirm pledge.
-3. **Query by ID**: Search any campaign ID in the query bar to call `get_campaign` on-chain.
-
-### Level 3 (Black Belt) Verification
-1. **Milestone Unlocking**: As campaign creator, click "Unlock Milestone" -> contract releases milestone tranche and advances state.
-2. **Event Streaming**: Navigate to "Live Stream" tab and observe real-time event logs polled from Soroban RPC.
-3. **Automated CI/CD**: Verify `.github/workflows/ci.yml` passes tests and frontend builds on every commit.
+1. **Connect:** Click **"Connect Wallet"** and select **Freighter Wallet** or **Instant Testnet Keypair**.
+2. **Fund:** Click **"+ Faucet (+10k XLM)"** to receive free Testnet XLM.
+3. **Send XLM:** Use the **Send XLM** tab to transfer funds with an on-chain memo.
+4. **Create a Grant:** Open **Grant Vaults** ➔ Click **"+ Create Grant Campaign"** ➔ Set funding goal and number of milestones (1–5).
+5. **Back a Project:** Click **"Pledge XLM"** on any active campaign card.
+6. **Unlock Milestones:** As creator, click **"Unlock Milestone"** to withdraw completed stage funds.
+7. **Watch Events:** Switch to the **Live Stream** tab to observe contract events broadcast in real-time.
 
 ---
 
 ## 📄 License
-MIT License. Built for the Stellar Community & Developer Challenge.
+MIT License. Built for the Stellar Community.
