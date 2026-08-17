@@ -224,6 +224,28 @@ body {
   box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
 }
 
+.btn-disconnect {
+  background: rgba(255, 23, 68, 0.12);
+  color: #ff1744;
+  border: 1px solid rgba(255, 23, 68, 0.35);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+}
+
+.btn-disconnect:hover {
+  background: rgba(255, 23, 68, 0.25);
+  border-color: rgba(255, 23, 68, 0.6);
+  box-shadow: 0 0 16px rgba(255, 23, 68, 0.3);
+  transform: translateY(-1px);
+}
+
 /* Inputs & Form Controls */
 .input-glass {
   width: 100%;

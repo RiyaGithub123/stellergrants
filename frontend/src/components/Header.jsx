@@ -151,24 +151,18 @@ export default function Header({ activeTab, setActiveTab }) {
                 }}
               >
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }} />
-                {truncateKey(publicKey)}
-                <button
-                  onClick={disconnectWallet}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: 'var(--text-muted)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '2px',
-                    marginLeft: '4px',
-                  }}
-                  title="Disconnect Wallet"
-                >
-                  <LogOut size={14} />
-                </button>
+                <span>{truncateKey(publicKey)}</span>
               </div>
+
+              {/* Direct Disconnect Button */}
+              <button
+                className="btn-disconnect"
+                onClick={disconnectWallet}
+                title="Disconnect Wallet"
+              >
+                <LogOut size={14} />
+                <span>Disconnect</span>
+              </button>
             </>
           ) : (
             <button className="btn-primary" onClick={() => setModalOpen(true)}>
