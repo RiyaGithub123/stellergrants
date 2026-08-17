@@ -1,6 +1,6 @@
 # ⚡ StellarGrants — Decentralized Creator Grants & Milestone Escrow Protocol
 
-[![Live dApp](https://img.shields.io/badge/Live_dApp-tubular--starship--2502ee.netlify.app-00e5ff?style=for-the-badge&logo=netlify)](https://tubular-starship-2502ee.netlify.app/)
+[![Live dApp](https://img.shields.io/badge/Live_dApp-stellargrants.netlify.app-00e5ff?style=for-the-badge&logo=netlify)](https://stellargrants.netlify.app/)
 [![Stellar Testnet](https://img.shields.io/badge/Network-Stellar_Testnet-7c4dff?style=for-the-badge&logo=stellar)](https://stellar.expert/explorer/testnet)
 [![Soroban v22](https://img.shields.io/badge/Smart_Contracts-Soroban_v22-10b981?style=for-the-badge)](https://soroban.stellar.org)
 [![Live Demo Video](https://img.shields.io/badge/YouTube-Live_Demo_Video-ff0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=64qJXUGWB9c)
@@ -11,7 +11,7 @@
 ---
 
 ## 🔗 Live Application & Video Demonstration
-* 🌐 **Live Deployed dApp:** [https://tubular-starship-2502ee.netlify.app/](https://tubular-starship-2502ee.netlify.app/)
+* 🌐 **Live Deployed dApp:** [https://stellargrants.netlify.app/](https://stellargrants.netlify.app/)
 * 🎥 **YouTube Walkthrough & Live Demo:** [https://www.youtube.com/watch?v=64qJXUGWB9c](https://www.youtube.com/watch?v=64qJXUGWB9c)
 
 ---
@@ -20,7 +20,7 @@
 
 | Parameter | On-Chain Value / Link |
 | :--- | :--- |
-| **Live Deployed dApp URL** | [https://tubular-starship-2502ee.netlify.app/](https://tubular-starship-2502ee.netlify.app/) |
+| **Live Deployed dApp URL** | [https://stellargrants.netlify.app/](https://stellargrants.netlify.app/) |
 | **Network** | **Stellar Testnet (Protocol 22 / Soroban v22)** |
 | **Contract Name** | `GrantEscrowContract` |
 | **Primary Deployed Contract ID** | [`CBHPULMSCLA3F3LEPKAAWVGEQNYUMLX3KFNPUFGU2SBOBFIMGFC5KIAS`](https://stellar.expert/explorer/testnet/contract/CBHPULMSCLA3F3LEPKAAWVGEQNYUMLX3KFNPUFGU2SBOBFIMGFC5KIAS) |
