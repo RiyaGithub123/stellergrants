@@ -37,21 +37,22 @@
 
 ## 🏛️ Architecture Overview
 
-```mermaid
-graph TD
-    User([Creator / Backer / Contributor]) -->|Freighter / Instant Keypair| Wallet[Connected Wallet]
-    User -->|Cosmic Glassmorphism UI| Frontend[React + Vite Frontend]
-    
-    Frontend -->|Horizon REST API| Horizon[Stellar Horizon Testnet]
-    Frontend -->|Soroban RPC JSON-RPC| SorobanRPC[Stellar Soroban RPC]
-    Frontend -->|1-Click Faucet| Friendbot[Stellar Friendbot (+10,000 XLM)]
-    
-    Wallet -->|Sign Payment XDR| Horizon
-    Wallet -->|Sign Contract Invocations| SorobanRPC
-    
-    SorobanRPC -->|Execute WASM| Contract[GrantEscrowContract Vault]
-    Contract -->|Emit On-Chain Events| EventStream[Real-Time Event Streamer]
-    EventStream -->|Live UI Synchronization| Frontend
+```text
+[ Creator / Backer ] ──> [ Freighter / Demo Wallet ]
+         │
+         ▼
+[ React + Vite Cosmic UI ] 
+         │
+         ├───> [ Stellar Horizon Testnet ]  (Native XLM Payments & Balance Queries)
+         ├───> [ Stellar Friendbot Faucet ] (1-Click Instant +10,000 XLM Funding)
+         └───> [ Soroban RPC Node ]         (Smart Contract WASM Execution & Events)
+                     │
+                     ▼
+       [ GrantEscrowContract Vault ]
+         ├── create_campaign (Persistent Storage + Milestone Setup)
+         ├── pledge_funds    (Backer Contribution Registry)
+         ├── release_milestone (Milestone-gated Escrow Release)
+         └── refund_backer   (Automated Trustless Backer Refunds)
 ```
 
 ---
